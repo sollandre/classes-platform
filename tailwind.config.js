@@ -34,15 +34,23 @@ module.exports = {
         }
       },
       animation: {
-        'appearLeft': 'appearLeft .2s ease-out'
+        'appearLeft': 'appearLeft .2s ease-out forwards',
+        'fadeRight': 'fadeRight .2s ease-in forwards'
       },
       keyframes: {
         appearLeft: {
           '0%':{
             transform: 'translateX(100%)',
+            visibility: 'hidden',
           },
           '100%': {
             transform: 'translateX(0%)'
+          }
+        },
+        fadeRight: {
+          '100%': {
+            transform: 'translateX(100%)',
+            visibility: 'hidden',
           }
         }
       }
