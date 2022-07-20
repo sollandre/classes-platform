@@ -1,6 +1,6 @@
-import { ReactPropTypes } from "react";
+import { memo, ReactPropTypes } from "react";
 
-export function Logo() {
+const LogoComponent = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,3 +21,7 @@ export function Logo() {
     </svg>
   );
 }
+
+export const Logo = memo(LogoComponent,(prev, next) => {
+  return true;
+})
