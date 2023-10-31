@@ -8,9 +8,17 @@ export function Router() {
   return (
     <Routes>
       <Route path="/" element={<Subscribe />} />
-      <Route path="/event" element={<Event />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/event/lesson/:slug" element={
+      <Route path="/event" element={
+        <RequireAuth>
+          <Profile />
+        </RequireAuth>
+      } />
+      <Route path="/event/:courseSlug" element={
+        <RequireAuth>
+          <Profile />
+        </RequireAuth>
+      } />
+      <Route path="/event/:course/:slug" element={
         <RequireAuth>
           <Event />
         </RequireAuth>

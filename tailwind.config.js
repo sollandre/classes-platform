@@ -16,6 +16,7 @@ module.exports = {
         green: {
           300:'#00B37E',
           500:'#00875F',
+          '500-30':'#00875F4D',
           700: '#015F43'
         },
         blue: {
@@ -57,6 +58,23 @@ module.exports = {
             visibility: 'hidden',
           }
         }
+      },
+      gradientColorStops: ({theme}) => {
+        const allStops = {}
+        for (let stop = 10; stop <= 100; stop+=10) {
+          const allColorStops = {}
+          for(color in theme.colors){
+            if(typeof theme.colors[color] === 'object'){
+              const colorStopsArr = Object.entries(theme.colors[color]).map(([key, value]) => {
+                return [key, `${value} ${stop}%`]
+              })
+              const colorStops = Object.fromEntries(colorStopsArr)
+              allColorStops[color] = colorStops
+            }
+          }
+          allStops[`${stop}%`] = allColorStops
+        }
+        return {...allStops}
       }
     },
   },

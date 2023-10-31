@@ -1,0 +1,23 @@
+query GetCourse($courseSlug: String) {
+  course(where: {courseSlug: $courseSlug}, stage: PUBLISHED) {
+    id
+    title
+    iconUrl
+    teacher {
+      avatarURL
+      bio
+      name
+    }
+    lessons(orderBy: availableAt_ASC) {
+      id
+      title
+      slug
+      description
+      lessonType
+      availableAt
+      challenge {
+        url
+      }
+    }
+  }
+}

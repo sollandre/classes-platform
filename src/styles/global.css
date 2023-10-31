@@ -2,7 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --green-300: #00B37E;
+  --green-500:#00875F;
+  --green-700: #015F43;
+  --blue-500: #81d8f7;
+  --orange-500: #fba94c;
+  --red-500: #f75a68;
+  --gray-100: #e1e1e6;
+  --gray-200: #c4c4cc;
+  --gray-300: #8d8d99;
+  --gray-500: #323238;
+  --gray-600: #29292e;
+  --gray-700: #121214;
+  --gray-900: #09090a;
+}
+
+html {
+  @apply w-full h-full text-xs md:text-sm xl:text-base ;
+}
+
 body {
-  @apply bg-gray-900 text-gray-100 w-full h-full;
+  @apply bg-gray-900 text-gray-100 w-full h-full min-w-[375px];
   -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  @apply w-full h-full flex flex-col
 }

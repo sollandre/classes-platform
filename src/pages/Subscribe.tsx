@@ -1,62 +1,36 @@
-import { gql, useMutation } from "@apollo/client";
-import { subscribe } from "graphql";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useContext,  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../components/Logo";
 import { SlideLeftFadeRigth } from "../components/SlideLeftFadeRigth";
-import { useCreateSubscriberMutation } from "../graphql/generated";
-import { supabase } from "../services/supabase";
+import { AuthContext } from "../context/AuthContext";
 
 export function Subscribe() {
-
-  const navigate = useNavigate();
-
-  // const [name, setName] = useState('')
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [formType, setFormType] = useState<'subscribe'|'login'>('subscribe')
-
-  const [createSubscriber, { loading }] = useCreateSubscriberMutation()
-
-  const session = supabase.auth.session()
-  const accessToken = session ? session.access_token : '';
+  const { signIn, signUp } = useContext(AuthContext)
 
   async function handleSubscribe(event: FormEvent){
     event.preventDefault();
-
-    const { user, session, error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    })
-
-    if(error){
-      console.log(error)
-      return error
-    }
-
-    console.log('New user created',user,session)
+    signUp(email, password).then(
+      () => {
+        navigate('/event')
+      }
+    )
     navigate('/event')
-  }   
-
+  }
   async function handleSignIn(event: FormEvent){
     event.preventDefault()
-
-    const { user, session, error} = await supabase.auth.signIn({
-      email: email,
-      password: password,
-    })
-
-    if(error){
-      console.log(error)
-      return error
-    }
-
-    console.log('User logged in',user,session)
-    navigate('/event')
+    signIn(email, password).then(
+      () => {
+        navigate('/event')
+      }
+    )
   }
 
   return (
-    <div className="min-h-screen bg-blur [background-size:cover,contain] bg-no-repeat bg-top flex flex-col items-center">
+    <div className="min-h-full w-full bg-blur [background-size:cover,contain] bg-no-repeat bg-center absolute flex flex-col items-center">
       <div className="max-w-[1280px] w-full px-6 lg:flex lg:items-center lg:justify-between mt-10 lg:mt-20 mx-auto">
         <div className="max-w-[640px] flex flex-col items-center lg:items-start">
           <Logo />
@@ -122,7 +96,6 @@ export function Subscribe() {
             />
             <button 
               type="submit"
-              disabled={loading}
               className="mt-4 bg-green-500 uppercase py-4 rounded font-bold hover:bg-green-700 transition-colors disabled:opacity-50"
             >
               <div className="flex justify-center">

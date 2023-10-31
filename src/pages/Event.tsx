@@ -7,25 +7,16 @@ import { supabase } from "../services/supabase";
 
 export function Event() {
   const navigate = useNavigate()
-  const { slug } = useParams<{ slug: string }>();
+  const { course, slug } = useParams<{ course: string, slug: string }>();
   
-  async function handleSignOut(){
-    const { error } = await supabase.auth.signOut()
-    if(error){
-      console.log(error)
-    }
-  }
+  
   
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
   
-  useEffect(() => {
-    const body = document.getElementById('body')
-    isSidebarOpen? body?.classList.add('overflow-hidden') : body?.classList.remove('overflow-hidden') 
-  }, [isSidebarOpen])
   
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
+    <div className="flex flex-col min-h-full">
+      <Header />
       <main className="flex">
           <div
             className={`bg-gray-900 w-full h-full z-[1000] fixed bg-opacity-50 flex-1 flex justify-end lg:hidden transition-all duration-500 ${ isSidebarOpen
@@ -40,17 +31,13 @@ export function Event() {
               <Sidebar />
             </div>
           </div>
-          { slug 
-            ? <Video lessonSlug={slug}  /> 
+          { slug && course
+            ? <Video lessonSlug={slug} courseSlug={course} /> 
             : 
               <div className="flex-1 flex items-center justify-center h-screen">
                 
                 <button 
                   className="px-4 py-2 bg-blue-500 rounded text-gray-800"
-                  onClick={() => {
-                    handleSignOut();
-                    navigate('/')
-                  }}
                 >
                   Sign out
                 </button>
@@ -59,7 +46,7 @@ export function Event() {
           
 
           <div className="hidden lg:flex">
-            <Sidebar />
+            <Sidebar courseSlug={course} />
           </div>
                
       

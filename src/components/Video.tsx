@@ -1,5 +1,4 @@
 import { DefaultUi, Player, Youtube } from "@vime/react";
-import { gql, useQuery } from "@apollo/client";
 import {
   CaretRight,
   DiscordLogo,
@@ -9,23 +8,25 @@ import {
 
 import '@vime/core/themes/default.css'
 import { VideoSkeleton } from "./VideoSkeleton";
-import { useGetLessonBySlugQuery } from "../graphql/generated";
+import { useGetLessonAndCourseTeacherBySlugQuery } from "../graphql/generated";
 
 interface VideoProps {
   lessonSlug: string;
+  courseSlug: string;
 }
 
 
 
 export function Video(props: VideoProps ) {
 
-  const { data } = useGetLessonBySlugQuery({
+  const { data } = useGetLessonAndCourseTeacherBySlugQuery({
     variables: {
-      slug: props.lessonSlug
+      slug: props.lessonSlug,
+      courseSlug: props.courseSlug
     } 
   });
 
-  if(!data || !data.lesson){
+  if(!data || !data.course || !data.course.lessons){
     return (
       <div className="flex-1 animate">
         <VideoSkeleton />
@@ -33,12 +34,15 @@ export function Video(props: VideoProps ) {
     )
   }
 
+  const teacher = data.course.teacher;
+  const lesson = data.course.lessons[0];
+
   return (
     <div className="flex-1">
       <div className="bg-black flex justify-center">
         <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video">
           <Player>
-            <Youtube videoId={data.lesson.videoId}/>
+            <Youtube videoId={lesson.videoId}/>
             <DefaultUi />
           </Player>
         </div>
@@ -49,26 +53,26 @@ export function Video(props: VideoProps ) {
           <div className="flex-1">
             
             <h1 className="text-lg lg:text-2xl font-bold">
-              {data.lesson.title}
+              {lesson.title}
             </h1>
             <p className="mt-4 text-gray-200 leading-relaxed text-sm lg:text-base">
-              {data.lesson.description}
+              {lesson.description}
             </p>
             {
-              data.lesson.teacher && (
+              teacher && (
                 <div className="flex items-center gap-4 mt-6">
                   <img
                     className="h-16 w-16 rounded-full border-2 border-blue-500"
-                    src={data.lesson.teacher.avatarURL}
+                    src={teacher.avatarURL}
                     alt="Avatar do professor da aula"
                   />
                   
                   <div className="leading-relaxed">
                     <strong className="font-bold text-2xl block">
-                      {data.lesson.teacher.name}
+                      {teacher.name}
                     </strong>
                     <span className="text-gray-200 text-sm block mt-2">
-                      {data.lesson.teacher.bio}
+                      {teacher.bio}
                     </span>
                   </div>
               

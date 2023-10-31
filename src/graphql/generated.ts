@@ -1132,6 +1132,578 @@ export type ConnectPositionInput = {
   start?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** A course model that contains one or more lessons in order  */
+export type Course = Node & {
+  __typename?: 'Course';
+  courseSlug?: Maybe<Scalars['String']>;
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  description?: Maybe<Scalars['String']>;
+  /** Get the document in other stages */
+  documentInStages: Array<Course>;
+  /** List of Course versions */
+  history: Array<Version>;
+  iconUrl?: Maybe<Scalars['String']>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  lessons: Array<Lesson>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  teacher?: Maybe<Teacher>;
+  title: Scalars['String'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+/** A course model that contains one or more lessons in order  */
+export type CourseCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/** A course model that contains one or more lessons in order  */
+export type CourseDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+/** A course model that contains one or more lessons in order  */
+export type CourseHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+/** A course model that contains one or more lessons in order  */
+export type CourseLessonsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<LessonOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<LessonWhereInput>;
+};
+
+
+/** A course model that contains one or more lessons in order  */
+export type CoursePublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/** A course model that contains one or more lessons in order  */
+export type CourseScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+/** A course model that contains one or more lessons in order  */
+export type CourseTeacherArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/** A course model that contains one or more lessons in order  */
+export type CourseUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type CourseConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: CourseWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type CourseConnection = {
+  __typename?: 'CourseConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<CourseEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type CourseCreateInput = {
+  courseSlug?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['String']>;
+  iconUrl?: InputMaybe<Scalars['String']>;
+  lessons?: InputMaybe<LessonCreateManyInlineInput>;
+  teacher?: InputMaybe<TeacherCreateOneInlineInput>;
+  title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type CourseCreateManyInlineInput = {
+  /** Connect multiple existing Course documents */
+  connect?: InputMaybe<Array<CourseWhereUniqueInput>>;
+  /** Create and connect multiple existing Course documents */
+  create?: InputMaybe<Array<CourseCreateInput>>;
+};
+
+export type CourseCreateOneInlineInput = {
+  /** Connect one existing Course document */
+  connect?: InputMaybe<CourseWhereUniqueInput>;
+  /** Create and connect one Course document */
+  create?: InputMaybe<CourseCreateInput>;
+};
+
+/** An edge in a connection. */
+export type CourseEdge = {
+  __typename?: 'CourseEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Course;
+};
+
+/** Identifies documents */
+export type CourseManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<CourseWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<CourseWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<CourseWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  courseSlug?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  courseSlug_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  courseSlug_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  courseSlug_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  courseSlug_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  courseSlug_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  courseSlug_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  courseSlug_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  courseSlug_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  courseSlug_starts_with?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
+  iconUrl?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  iconUrl_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  iconUrl_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  iconUrl_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  iconUrl_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  iconUrl_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  iconUrl_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  iconUrl_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  iconUrl_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  iconUrl_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  lessons_every?: InputMaybe<LessonWhereInput>;
+  lessons_none?: InputMaybe<LessonWhereInput>;
+  lessons_some?: InputMaybe<LessonWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  teacher?: InputMaybe<TeacherWhereInput>;
+  title?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum CourseOrderByInput {
+  CourseSlugAsc = 'courseSlug_ASC',
+  CourseSlugDesc = 'courseSlug_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  IconUrlAsc = 'iconUrl_ASC',
+  IconUrlDesc = 'iconUrl_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type CourseUpdateInput = {
+  courseSlug?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  iconUrl?: InputMaybe<Scalars['String']>;
+  lessons?: InputMaybe<LessonUpdateManyInlineInput>;
+  teacher?: InputMaybe<TeacherUpdateOneInlineInput>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type CourseUpdateManyInlineInput = {
+  /** Connect multiple existing Course documents */
+  connect?: InputMaybe<Array<CourseConnectInput>>;
+  /** Create and connect multiple Course documents */
+  create?: InputMaybe<Array<CourseCreateInput>>;
+  /** Delete multiple Course documents */
+  delete?: InputMaybe<Array<CourseWhereUniqueInput>>;
+  /** Disconnect multiple Course documents */
+  disconnect?: InputMaybe<Array<CourseWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Course documents */
+  set?: InputMaybe<Array<CourseWhereUniqueInput>>;
+  /** Update multiple Course documents */
+  update?: InputMaybe<Array<CourseUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Course documents */
+  upsert?: InputMaybe<Array<CourseUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type CourseUpdateManyInput = {
+  description?: InputMaybe<Scalars['String']>;
+  iconUrl?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type CourseUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: CourseUpdateManyInput;
+  /** Document search */
+  where: CourseWhereInput;
+};
+
+export type CourseUpdateOneInlineInput = {
+  /** Connect existing Course document */
+  connect?: InputMaybe<CourseWhereUniqueInput>;
+  /** Create and connect one Course document */
+  create?: InputMaybe<CourseCreateInput>;
+  /** Delete currently connected Course document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected Course document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Course document */
+  update?: InputMaybe<CourseUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Course document */
+  upsert?: InputMaybe<CourseUpsertWithNestedWhereUniqueInput>;
+};
+
+export type CourseUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: CourseUpdateInput;
+  /** Unique document search */
+  where: CourseWhereUniqueInput;
+};
+
+export type CourseUpsertInput = {
+  /** Create document if it didn't exist */
+  create: CourseCreateInput;
+  /** Update document if it exists */
+  update: CourseUpdateInput;
+};
+
+export type CourseUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: CourseUpsertInput;
+  /** Unique document search */
+  where: CourseWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type CourseWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<CourseWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<CourseWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<CourseWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  courseSlug?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  courseSlug_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  courseSlug_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  courseSlug_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  courseSlug_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  courseSlug_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  courseSlug_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  courseSlug_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  courseSlug_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  courseSlug_starts_with?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
+  iconUrl?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  iconUrl_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  iconUrl_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  iconUrl_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  iconUrl_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  iconUrl_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  iconUrl_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  iconUrl_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  iconUrl_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  iconUrl_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  lessons_every?: InputMaybe<LessonWhereInput>;
+  lessons_none?: InputMaybe<LessonWhereInput>;
+  lessons_some?: InputMaybe<LessonWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  teacher?: InputMaybe<TeacherWhereInput>;
+  title?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References Course record uniquely */
+export type CourseWhereUniqueInput = {
+  courseSlug?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export enum DocumentFileTypes {
   Doc = 'doc',
   Docx = 'docx',
@@ -1226,6 +1798,7 @@ export type Lesson = Node & {
   __typename?: 'Lesson';
   availableAt?: Maybe<Scalars['DateTime']>;
   challenge?: Maybe<Challenge>;
+  course?: Maybe<Course>;
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
   /** User that created this document */
@@ -1246,7 +1819,6 @@ export type Lesson = Node & {
   slug: Scalars['String'];
   /** System stage field */
   stage: Stage;
-  teacher?: Maybe<Teacher>;
   title: Scalars['String'];
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
@@ -1258,6 +1830,11 @@ export type Lesson = Node & {
 
 
 export type LessonChallengeArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type LessonCourseArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1297,11 +1874,6 @@ export type LessonScheduledInArgs = {
 };
 
 
-export type LessonTeacherArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-
 export type LessonUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
@@ -1326,11 +1898,11 @@ export type LessonConnection = {
 export type LessonCreateInput = {
   availableAt?: InputMaybe<Scalars['DateTime']>;
   challenge?: InputMaybe<ChallengeCreateOneInlineInput>;
+  course?: InputMaybe<CourseCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description?: InputMaybe<Scalars['String']>;
   lessonType: LessonType;
   slug: Scalars['String'];
-  teacher?: InputMaybe<TeacherCreateOneInlineInput>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   videoId: Scalars['String'];
@@ -1385,6 +1957,7 @@ export type LessonManyWhereInput = {
   /** All values that are not contained in given list. */
   availableAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
   challenge?: InputMaybe<ChallengeWhereInput>;
+  course?: InputMaybe<CourseWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -1484,7 +2057,6 @@ export type LessonManyWhereInput = {
   slug_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   slug_starts_with?: InputMaybe<Scalars['String']>;
-  teacher?: InputMaybe<TeacherWhereInput>;
   title?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars['String']>;
@@ -1572,10 +2144,10 @@ export enum LessonType {
 export type LessonUpdateInput = {
   availableAt?: InputMaybe<Scalars['DateTime']>;
   challenge?: InputMaybe<ChallengeUpdateOneInlineInput>;
+  course?: InputMaybe<CourseUpdateOneInlineInput>;
   description?: InputMaybe<Scalars['String']>;
   lessonType?: InputMaybe<LessonType>;
   slug?: InputMaybe<Scalars['String']>;
-  teacher?: InputMaybe<TeacherUpdateOneInlineInput>;
   title?: InputMaybe<Scalars['String']>;
   videoId?: InputMaybe<Scalars['String']>;
 };
@@ -1674,6 +2246,7 @@ export type LessonWhereInput = {
   /** All values that are not contained in given list. */
   availableAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
   challenge?: InputMaybe<ChallengeWhereInput>;
+  course?: InputMaybe<CourseWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -1773,7 +2346,6 @@ export type LessonWhereInput = {
   slug_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   slug_starts_with?: InputMaybe<Scalars['String']>;
-  teacher?: InputMaybe<TeacherWhereInput>;
   title?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars['String']>;
@@ -1871,6 +2443,8 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one challenge */
   createChallenge?: Maybe<Challenge>;
+  /** Create one course */
+  createCourse?: Maybe<Course>;
   /** Create one lesson */
   createLesson?: Maybe<Lesson>;
   /** Create one scheduledRelease */
@@ -1883,6 +2457,8 @@ export type Mutation = {
   deleteAsset?: Maybe<Asset>;
   /** Delete one challenge from _all_ existing stages. Returns deleted document. */
   deleteChallenge?: Maybe<Challenge>;
+  /** Delete one course from _all_ existing stages. Returns deleted document. */
+  deleteCourse?: Maybe<Course>;
   /** Delete one lesson from _all_ existing stages. Returns deleted document. */
   deleteLesson?: Maybe<Lesson>;
   /**
@@ -1899,6 +2475,13 @@ export type Mutation = {
   deleteManyChallenges: BatchPayload;
   /** Delete many Challenge documents, return deleted documents */
   deleteManyChallengesConnection: ChallengeConnection;
+  /**
+   * Delete many Course documents
+   * @deprecated Please use the new paginated many mutation (deleteManyCoursesConnection)
+   */
+  deleteManyCourses: BatchPayload;
+  /** Delete many Course documents, return deleted documents */
+  deleteManyCoursesConnection: CourseConnection;
   /**
    * Delete many Lesson documents
    * @deprecated Please use the new paginated many mutation (deleteManyLessonsConnection)
@@ -1932,6 +2515,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one challenge */
   publishChallenge?: Maybe<Challenge>;
+  /** Publish one course */
+  publishCourse?: Maybe<Course>;
   /** Publish one lesson */
   publishLesson?: Maybe<Lesson>;
   /**
@@ -1948,6 +2533,13 @@ export type Mutation = {
   publishManyChallenges: BatchPayload;
   /** Publish many Challenge documents */
   publishManyChallengesConnection: ChallengeConnection;
+  /**
+   * Publish many Course documents
+   * @deprecated Please use the new paginated many mutation (publishManyCoursesConnection)
+   */
+  publishManyCourses: BatchPayload;
+  /** Publish many Course documents */
+  publishManyCoursesConnection: CourseConnection;
   /**
    * Publish many Lesson documents
    * @deprecated Please use the new paginated many mutation (publishManyLessonsConnection)
@@ -1977,6 +2569,8 @@ export type Mutation = {
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one challenge */
   schedulePublishChallenge?: Maybe<Challenge>;
+  /** Schedule to publish one course */
+  schedulePublishCourse?: Maybe<Course>;
   /** Schedule to publish one lesson */
   schedulePublishLesson?: Maybe<Lesson>;
   /** Schedule to publish one subscriber */
@@ -1987,6 +2581,8 @@ export type Mutation = {
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one challenge from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishChallenge?: Maybe<Challenge>;
+  /** Unpublish one course from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishCourse?: Maybe<Course>;
   /** Unpublish one lesson from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishLesson?: Maybe<Lesson>;
   /** Unpublish one subscriber from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -1997,6 +2593,8 @@ export type Mutation = {
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one challenge from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishChallenge?: Maybe<Challenge>;
+  /** Unpublish one course from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishCourse?: Maybe<Course>;
   /** Unpublish one lesson from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishLesson?: Maybe<Lesson>;
   /**
@@ -2013,6 +2611,13 @@ export type Mutation = {
   unpublishManyChallenges: BatchPayload;
   /** Find many Challenge documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyChallengesConnection: ChallengeConnection;
+  /**
+   * Unpublish many Course documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyCoursesConnection)
+   */
+  unpublishManyCourses: BatchPayload;
+  /** Find many Course documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyCoursesConnection: CourseConnection;
   /**
    * Unpublish many Lesson documents
    * @deprecated Please use the new paginated many mutation (unpublishManyLessonsConnection)
@@ -2042,6 +2647,8 @@ export type Mutation = {
   updateAsset?: Maybe<Asset>;
   /** Update one challenge */
   updateChallenge?: Maybe<Challenge>;
+  /** Update one course */
+  updateCourse?: Maybe<Course>;
   /** Update one lesson */
   updateLesson?: Maybe<Lesson>;
   /**
@@ -2058,6 +2665,13 @@ export type Mutation = {
   updateManyChallenges: BatchPayload;
   /** Update many Challenge documents */
   updateManyChallengesConnection: ChallengeConnection;
+  /**
+   * Update many courses
+   * @deprecated Please use the new paginated many mutation (updateManyCoursesConnection)
+   */
+  updateManyCourses: BatchPayload;
+  /** Update many Course documents */
+  updateManyCoursesConnection: CourseConnection;
   /**
    * Update many lessons
    * @deprecated Please use the new paginated many mutation (updateManyLessonsConnection)
@@ -2089,6 +2703,8 @@ export type Mutation = {
   upsertAsset?: Maybe<Asset>;
   /** Upsert one challenge */
   upsertChallenge?: Maybe<Challenge>;
+  /** Upsert one course */
+  upsertCourse?: Maybe<Course>;
   /** Upsert one lesson */
   upsertLesson?: Maybe<Lesson>;
   /** Upsert one subscriber */
@@ -2105,6 +2721,11 @@ export type MutationCreateAssetArgs = {
 
 export type MutationCreateChallengeArgs = {
   data: ChallengeCreateInput;
+};
+
+
+export type MutationCreateCourseArgs = {
+  data: CourseCreateInput;
 };
 
 
@@ -2135,6 +2756,11 @@ export type MutationDeleteAssetArgs = {
 
 export type MutationDeleteChallengeArgs = {
   where: ChallengeWhereUniqueInput;
+};
+
+
+export type MutationDeleteCourseArgs = {
+  where: CourseWhereUniqueInput;
 };
 
 
@@ -2170,6 +2796,21 @@ export type MutationDeleteManyChallengesConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ChallengeManyWhereInput>;
+};
+
+
+export type MutationDeleteManyCoursesArgs = {
+  where?: InputMaybe<CourseManyWhereInput>;
+};
+
+
+export type MutationDeleteManyCoursesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CourseManyWhereInput>;
 };
 
 
@@ -2253,6 +2894,12 @@ export type MutationPublishChallengeArgs = {
 };
 
 
+export type MutationPublishCourseArgs = {
+  to?: Array<Stage>;
+  where: CourseWhereUniqueInput;
+};
+
+
 export type MutationPublishLessonArgs = {
   to?: Array<Stage>;
   where: LessonWhereUniqueInput;
@@ -2298,6 +2945,24 @@ export type MutationPublishManyChallengesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<ChallengeManyWhereInput>;
+};
+
+
+export type MutationPublishManyCoursesArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<CourseManyWhereInput>;
+};
+
+
+export type MutationPublishManyCoursesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<CourseManyWhereInput>;
 };
 
 
@@ -2386,6 +3051,14 @@ export type MutationSchedulePublishChallengeArgs = {
 };
 
 
+export type MutationSchedulePublishCourseArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: CourseWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishLessonArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
@@ -2428,6 +3101,14 @@ export type MutationScheduleUnpublishChallengeArgs = {
 };
 
 
+export type MutationScheduleUnpublishCourseArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: CourseWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishLessonArgs = {
   from?: Array<Stage>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
@@ -2463,6 +3144,12 @@ export type MutationUnpublishAssetArgs = {
 export type MutationUnpublishChallengeArgs = {
   from?: Array<Stage>;
   where: ChallengeWhereUniqueInput;
+};
+
+
+export type MutationUnpublishCourseArgs = {
+  from?: Array<Stage>;
+  where: CourseWhereUniqueInput;
 };
 
 
@@ -2509,6 +3196,24 @@ export type MutationUnpublishManyChallengesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
   where?: InputMaybe<ChallengeManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyCoursesArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<CourseManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyCoursesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<CourseManyWhereInput>;
 };
 
 
@@ -2590,6 +3295,12 @@ export type MutationUpdateChallengeArgs = {
 };
 
 
+export type MutationUpdateCourseArgs = {
+  data: CourseUpdateInput;
+  where: CourseWhereUniqueInput;
+};
+
+
 export type MutationUpdateLessonArgs = {
   data: LessonUpdateInput;
   where: LessonWhereUniqueInput;
@@ -2627,6 +3338,23 @@ export type MutationUpdateManyChallengesConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ChallengeManyWhereInput>;
+};
+
+
+export type MutationUpdateManyCoursesArgs = {
+  data: CourseUpdateManyInput;
+  where?: InputMaybe<CourseManyWhereInput>;
+};
+
+
+export type MutationUpdateManyCoursesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: CourseUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CourseManyWhereInput>;
 };
 
 
@@ -2711,6 +3439,12 @@ export type MutationUpsertChallengeArgs = {
 };
 
 
+export type MutationUpsertCourseArgs = {
+  upsert: CourseUpsertInput;
+  where: CourseWhereUniqueInput;
+};
+
+
 export type MutationUpsertLessonArgs = {
   upsert: LessonUpsertInput;
   where: LessonWhereUniqueInput;
@@ -2776,6 +3510,14 @@ export type Query = {
   challenges: Array<Challenge>;
   /** Retrieve multiple challenges using the Relay connection interface */
   challengesConnection: ChallengeConnection;
+  /** Retrieve a single course */
+  course?: Maybe<Course>;
+  /** Retrieve document version */
+  courseVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple courses */
+  courses: Array<Course>;
+  /** Retrieve multiple courses using the Relay connection interface */
+  coursesConnection: CourseConnection;
   /** Retrieve a single lesson */
   lesson?: Maybe<Lesson>;
   /** Retrieve document version */
@@ -2896,6 +3638,44 @@ export type QueryChallengesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
   where?: InputMaybe<ChallengeWhereInput>;
+};
+
+
+export type QueryCourseArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: CourseWhereUniqueInput;
+};
+
+
+export type QueryCourseVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryCoursesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<CourseOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<CourseWhereInput>;
+};
+
+
+export type QueryCoursesConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<CourseOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<CourseWhereInput>;
 };
 
 
@@ -3225,7 +4005,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Challenge | Lesson | Subscriber | Teacher;
+export type ScheduledOperationAffectedDocument = Asset | Challenge | Course | Lesson | Subscriber | Teacher;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -4598,6 +5378,7 @@ export type Teacher = Node & {
   __typename?: 'Teacher';
   avatarURL: Scalars['String'];
   bio: Scalars['String'];
+  courses: Array<Course>;
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
   /** User that created this document */
@@ -4608,7 +5389,6 @@ export type Teacher = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
-  lessons: Array<Lesson>;
   name: Scalars['String'];
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -4621,6 +5401,18 @@ export type Teacher = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+};
+
+
+export type TeacherCoursesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<CourseOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CourseWhereInput>;
 };
 
 
@@ -4640,18 +5432,6 @@ export type TeacherHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: InputMaybe<Stage>;
-};
-
-
-export type TeacherLessonsArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
-  orderBy?: InputMaybe<LessonOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<LessonWhereInput>;
 };
 
 
@@ -4695,8 +5475,8 @@ export type TeacherConnection = {
 export type TeacherCreateInput = {
   avatarURL: Scalars['String'];
   bio: Scalars['String'];
+  courses?: InputMaybe<CourseCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
-  lessons?: InputMaybe<LessonCreateManyInlineInput>;
   name: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -4772,6 +5552,9 @@ export type TeacherManyWhereInput = {
   bio_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   bio_starts_with?: InputMaybe<Scalars['String']>;
+  courses_every?: InputMaybe<CourseWhereInput>;
+  courses_none?: InputMaybe<CourseWhereInput>;
+  courses_some?: InputMaybe<CourseWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -4807,9 +5590,6 @@ export type TeacherManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
-  lessons_every?: InputMaybe<LessonWhereInput>;
-  lessons_none?: InputMaybe<LessonWhereInput>;
-  lessons_some?: InputMaybe<LessonWhereInput>;
   name?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   name_contains?: InputMaybe<Scalars['String']>;
@@ -4886,7 +5666,7 @@ export enum TeacherOrderByInput {
 export type TeacherUpdateInput = {
   avatarURL?: InputMaybe<Scalars['String']>;
   bio?: InputMaybe<Scalars['String']>;
-  lessons?: InputMaybe<LessonUpdateManyInlineInput>;
+  courses?: InputMaybe<CourseUpdateManyInlineInput>;
   name?: InputMaybe<Scalars['String']>;
 };
 
@@ -5004,6 +5784,9 @@ export type TeacherWhereInput = {
   bio_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   bio_starts_with?: InputMaybe<Scalars['String']>;
+  courses_every?: InputMaybe<CourseWhereInput>;
+  courses_none?: InputMaybe<CourseWhereInput>;
+  courses_some?: InputMaybe<CourseWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -5039,9 +5822,6 @@ export type TeacherWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
-  lessons_every?: InputMaybe<LessonWhereInput>;
-  lessons_none?: InputMaybe<LessonWhereInput>;
-  lessons_some?: InputMaybe<LessonWhereInput>;
   name?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   name_contains?: InputMaybe<Scalars['String']>;
@@ -5576,17 +6356,32 @@ export type CreateSubscriberMutationVariables = Exact<{
 
 export type CreateSubscriberMutation = { __typename?: 'Mutation', createSubscriber?: { __typename?: 'Subscriber', id: string } | null };
 
-export type GetLessonBySlugQueryVariables = Exact<{
-  slug?: InputMaybe<Scalars['String']>;
+export type GetCourseQueryVariables = Exact<{
+  courseSlug?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetLessonBySlugQuery = { __typename?: 'Query', lesson?: { __typename?: 'Lesson', id: string, title: string, videoId: string, description?: string | null, teacher?: { __typename?: 'Teacher', bio: string, avatarURL: string, name: string } | null } | null };
+export type GetCourseQuery = { __typename?: 'Query', course?: { __typename?: 'Course', id: string, title: string, iconUrl?: string | null, teacher?: { __typename?: 'Teacher', avatarURL: string, bio: string, name: string } | null, lessons: Array<{ __typename?: 'Lesson', id: string, title: string, slug: string, description?: string | null, lessonType: LessonType, availableAt?: any | null, challenge?: { __typename?: 'Challenge', url: string } | null }> } | null };
 
-export type GetLessonsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetCoursesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLessonsQuery = { __typename?: 'Query', lessons: Array<{ __typename?: 'Lesson', id: string, slug: string, title: string, availableAt?: any | null, lessonType: LessonType }> };
+export type GetCoursesQuery = { __typename?: 'Query', courses: Array<{ __typename?: 'Course', id: string, title: string, description?: string | null, courseSlug?: string | null, iconUrl?: string | null, teacher?: { __typename?: 'Teacher', bio: string, avatarURL: string, name: string } | null }> };
+
+export type GetLessonAndCourseTeacherBySlugQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']>;
+  courseSlug?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetLessonAndCourseTeacherBySlugQuery = { __typename?: 'Query', course?: { __typename?: 'Course', id: string, teacher?: { __typename?: 'Teacher', bio: string, avatarURL: string, name: string } | null, lessons: Array<{ __typename?: 'Lesson', id: string, title: string, videoId: string, description?: string | null }> } | null };
+
+export type GetLessonsByCourseQueryVariables = Exact<{
+  courseSlug?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetLessonsByCourseQuery = { __typename?: 'Query', lessons: Array<{ __typename?: 'Lesson', id: string, slug: string, title: string, availableAt?: any | null, lessonType: LessonType }> };
 
 
 export const CreateSubscriberDocument = gql`
@@ -5623,13 +6418,67 @@ export function useCreateSubscriberMutation(baseOptions?: Apollo.MutationHookOpt
 export type CreateSubscriberMutationHookResult = ReturnType<typeof useCreateSubscriberMutation>;
 export type CreateSubscriberMutationResult = Apollo.MutationResult<CreateSubscriberMutation>;
 export type CreateSubscriberMutationOptions = Apollo.BaseMutationOptions<CreateSubscriberMutation, CreateSubscriberMutationVariables>;
-export const GetLessonBySlugDocument = gql`
-    query GetLessonBySlug($slug: String) {
-  lesson(where: {slug: $slug}) {
+export const GetCourseDocument = gql`
+    query GetCourse($courseSlug: String) {
+  course(where: {courseSlug: $courseSlug}, stage: PUBLISHED) {
     id
     title
-    videoId
+    iconUrl
+    teacher {
+      avatarURL
+      bio
+      name
+    }
+    lessons(orderBy: availableAt_ASC) {
+      id
+      title
+      slug
+      description
+      lessonType
+      availableAt
+      challenge {
+        url
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCourseQuery__
+ *
+ * To run a query within a React component, call `useGetCourseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCourseQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCourseQuery({
+ *   variables: {
+ *      courseSlug: // value for 'courseSlug'
+ *   },
+ * });
+ */
+export function useGetCourseQuery(baseOptions?: Apollo.QueryHookOptions<GetCourseQuery, GetCourseQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCourseQuery, GetCourseQueryVariables>(GetCourseDocument, options);
+      }
+export function useGetCourseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCourseQuery, GetCourseQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCourseQuery, GetCourseQueryVariables>(GetCourseDocument, options);
+        }
+export type GetCourseQueryHookResult = ReturnType<typeof useGetCourseQuery>;
+export type GetCourseLazyQueryHookResult = ReturnType<typeof useGetCourseLazyQuery>;
+export type GetCourseQueryResult = Apollo.QueryResult<GetCourseQuery, GetCourseQueryVariables>;
+export const GetCoursesDocument = gql`
+    query GetCourses {
+  courses {
+    id
+    title
     description
+    courseSlug
+    iconUrl
     teacher {
       bio
       avatarURL
@@ -5640,35 +6489,85 @@ export const GetLessonBySlugDocument = gql`
     `;
 
 /**
- * __useGetLessonBySlugQuery__
+ * __useGetCoursesQuery__
  *
- * To run a query within a React component, call `useGetLessonBySlugQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetLessonBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetCoursesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetLessonBySlugQuery({
+ * const { data, loading, error } = useGetCoursesQuery({
  *   variables: {
- *      slug: // value for 'slug'
  *   },
  * });
  */
-export function useGetLessonBySlugQuery(baseOptions?: Apollo.QueryHookOptions<GetLessonBySlugQuery, GetLessonBySlugQueryVariables>) {
+export function useGetCoursesQuery(baseOptions?: Apollo.QueryHookOptions<GetCoursesQuery, GetCoursesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLessonBySlugQuery, GetLessonBySlugQueryVariables>(GetLessonBySlugDocument, options);
+        return Apollo.useQuery<GetCoursesQuery, GetCoursesQueryVariables>(GetCoursesDocument, options);
       }
-export function useGetLessonBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLessonBySlugQuery, GetLessonBySlugQueryVariables>) {
+export function useGetCoursesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCoursesQuery, GetCoursesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLessonBySlugQuery, GetLessonBySlugQueryVariables>(GetLessonBySlugDocument, options);
+          return Apollo.useLazyQuery<GetCoursesQuery, GetCoursesQueryVariables>(GetCoursesDocument, options);
         }
-export type GetLessonBySlugQueryHookResult = ReturnType<typeof useGetLessonBySlugQuery>;
-export type GetLessonBySlugLazyQueryHookResult = ReturnType<typeof useGetLessonBySlugLazyQuery>;
-export type GetLessonBySlugQueryResult = Apollo.QueryResult<GetLessonBySlugQuery, GetLessonBySlugQueryVariables>;
-export const GetLessonsDocument = gql`
-    query GetLessons {
-  lessons(orderBy: availableAt_ASC, stage: PUBLISHED) {
+export type GetCoursesQueryHookResult = ReturnType<typeof useGetCoursesQuery>;
+export type GetCoursesLazyQueryHookResult = ReturnType<typeof useGetCoursesLazyQuery>;
+export type GetCoursesQueryResult = Apollo.QueryResult<GetCoursesQuery, GetCoursesQueryVariables>;
+export const GetLessonAndCourseTeacherBySlugDocument = gql`
+    query GetLessonAndCourseTeacherBySlug($slug: String, $courseSlug: String) {
+  course(where: {courseSlug: $courseSlug}) {
+    id
+    teacher {
+      bio
+      avatarURL
+      name
+    }
+    lessons(where: {slug: $slug}) {
+      id
+      title
+      videoId
+      description
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetLessonAndCourseTeacherBySlugQuery__
+ *
+ * To run a query within a React component, call `useGetLessonAndCourseTeacherBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLessonAndCourseTeacherBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLessonAndCourseTeacherBySlugQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *      courseSlug: // value for 'courseSlug'
+ *   },
+ * });
+ */
+export function useGetLessonAndCourseTeacherBySlugQuery(baseOptions?: Apollo.QueryHookOptions<GetLessonAndCourseTeacherBySlugQuery, GetLessonAndCourseTeacherBySlugQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetLessonAndCourseTeacherBySlugQuery, GetLessonAndCourseTeacherBySlugQueryVariables>(GetLessonAndCourseTeacherBySlugDocument, options);
+      }
+export function useGetLessonAndCourseTeacherBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLessonAndCourseTeacherBySlugQuery, GetLessonAndCourseTeacherBySlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetLessonAndCourseTeacherBySlugQuery, GetLessonAndCourseTeacherBySlugQueryVariables>(GetLessonAndCourseTeacherBySlugDocument, options);
+        }
+export type GetLessonAndCourseTeacherBySlugQueryHookResult = ReturnType<typeof useGetLessonAndCourseTeacherBySlugQuery>;
+export type GetLessonAndCourseTeacherBySlugLazyQueryHookResult = ReturnType<typeof useGetLessonAndCourseTeacherBySlugLazyQuery>;
+export type GetLessonAndCourseTeacherBySlugQueryResult = Apollo.QueryResult<GetLessonAndCourseTeacherBySlugQuery, GetLessonAndCourseTeacherBySlugQueryVariables>;
+export const GetLessonsByCourseDocument = gql`
+    query GetLessonsByCourse($courseSlug: String) {
+  lessons(
+    stage: PUBLISHED
+    orderBy: availableAt_ASC
+    where: {course: {courseSlug: $courseSlug}}
+  ) {
     id
     slug
     title
@@ -5679,28 +6578,29 @@ export const GetLessonsDocument = gql`
     `;
 
 /**
- * __useGetLessonsQuery__
+ * __useGetLessonsByCourseQuery__
  *
- * To run a query within a React component, call `useGetLessonsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetLessonsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetLessonsByCourseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLessonsByCourseQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetLessonsQuery({
+ * const { data, loading, error } = useGetLessonsByCourseQuery({
  *   variables: {
+ *      courseSlug: // value for 'courseSlug'
  *   },
  * });
  */
-export function useGetLessonsQuery(baseOptions?: Apollo.QueryHookOptions<GetLessonsQuery, GetLessonsQueryVariables>) {
+export function useGetLessonsByCourseQuery(baseOptions?: Apollo.QueryHookOptions<GetLessonsByCourseQuery, GetLessonsByCourseQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLessonsQuery, GetLessonsQueryVariables>(GetLessonsDocument, options);
+        return Apollo.useQuery<GetLessonsByCourseQuery, GetLessonsByCourseQueryVariables>(GetLessonsByCourseDocument, options);
       }
-export function useGetLessonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLessonsQuery, GetLessonsQueryVariables>) {
+export function useGetLessonsByCourseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLessonsByCourseQuery, GetLessonsByCourseQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLessonsQuery, GetLessonsQueryVariables>(GetLessonsDocument, options);
+          return Apollo.useLazyQuery<GetLessonsByCourseQuery, GetLessonsByCourseQueryVariables>(GetLessonsByCourseDocument, options);
         }
-export type GetLessonsQueryHookResult = ReturnType<typeof useGetLessonsQuery>;
-export type GetLessonsLazyQueryHookResult = ReturnType<typeof useGetLessonsLazyQuery>;
-export type GetLessonsQueryResult = Apollo.QueryResult<GetLessonsQuery, GetLessonsQueryVariables>;
+export type GetLessonsByCourseQueryHookResult = ReturnType<typeof useGetLessonsByCourseQuery>;
+export type GetLessonsByCourseLazyQueryHookResult = ReturnType<typeof useGetLessonsByCourseLazyQuery>;
+export type GetLessonsByCourseQueryResult = Apollo.QueryResult<GetLessonsByCourseQuery, GetLessonsByCourseQueryVariables>;
